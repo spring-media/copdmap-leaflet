@@ -1,0 +1,10 @@
+
+#copd_container{
+
+  margin: 70px; /*Nur für Entwicklung*/  
+}
+
+#copd_map{
+	width:500px;
+	height:700px;
+}

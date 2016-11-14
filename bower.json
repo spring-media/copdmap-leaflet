@@ -1,0 +1,10 @@
+{
+  "name": "copdmap-leaflet",
+  "version": "0.0.0",
+  "dependencies": {
+  	
+  	"topojson": "~1.5.2"
+  		
+  }
+}
+
