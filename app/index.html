@@ -12,12 +12,13 @@
 	<!-- build:js scripts/vendor.js -->
 	<script src="lib/scripts/leaflet.js"></script>
   <!-- bower:js -->
+  <script src="bower_components/topojson/topojson.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
 
 	<div id="copd_container">
 	    <div id="copd_map"></div>
 	</div>
-	
-	<script src="bower_components/topojson/topojson.js"></script>
 	<script>
 		// Copyright (c) 2013 Ryan Clark, https://gist.github.com/rclark/5779673
 		L.TopoJSON = L.GeoJSON.extend({
@@ -33,8 +34,6 @@
 			}
 		});
 	</script>
-	<!-- endbower -->
-  <!-- endbuild -->
 
 	<!-- build:js scripts/main.js -->
 	<script src="scripts/main.js"></script>
