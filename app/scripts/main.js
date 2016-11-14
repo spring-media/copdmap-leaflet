@@ -31,19 +31,23 @@
 
 						var topoLayer = new L.TopoJSON();
 						function highlight(e){
-								var layer = e.target;
+							var layer = e.target;
 
-								layer.setStyle({
-										weight: 5,
-										color: '#666',
-										dashArray: '',
-										fillOpacity: 0.7
-								});
+							layer.setStyle({
+									weight: 5,
+									color: '#666',
+									dashArray: '',
+									fillOpacity: 0.7
+							});
 
-								popup.setContent(layer.feature.properties.name);
-								popup.setLatLng([54.8709, 13.0195]);
+							var popupContent = layer.feature.properties.name + "<br>"
+								+ "Anteil Raucher: ".toString() + layer.feature.properties.percentageSmoker + " % <br>"
+								+ "Anteil COPD: ".toString() + layer.feature.properties.percentageCOPD + " %";
 
-								console.log(e);
+							popup.setContent(popupContent);
+							popup.setLatLng(e.latlng);
+
+							console.log(e, layer.feature.properties);
 						}
 						function getColor(feature){
 								/*Einfärbung muss dann je nach Wert berechnet werden, Farbe momentan Hardcoded im DatenJSON*/
