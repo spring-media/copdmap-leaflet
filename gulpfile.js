@@ -30,13 +30,13 @@ gulp.task('shapefile', function () {
         .pipe($.size());
 });
 // Mapdata
-gulp.task('shapefile', function () {
+gulp.task('mapdata', function () {
     return gulp.src('app/data/data.json')
         .pipe(gulp.dest('dist/data'))
         .pipe($.size());
 });
 // HTML
-gulp.task('html', ['styles', 'scripts', 'shapefile'], function () {
+gulp.task('html', ['styles', 'scripts', 'shapefile','mapdata'], function () {
     var jsFilter = $.filter('**/*.js');
     var cssFilter = $.filter('**/*.css');
 
