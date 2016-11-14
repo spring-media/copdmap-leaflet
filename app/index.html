@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
 
-
 	<!-- build:js scripts/vendor.js -->
 	<script src="lib/scripts/leaflet.js"></script>
   <!-- bower:js -->
@@ -16,9 +15,24 @@
   <!-- endbower -->
   <!-- endbuild -->
 
-	<div id="copd_container">
-	    <div id="copd_map"></div>
+	<div id="copd_app">
+		<div id="stats_container">
+			<div id="graph_container">
+				<span id="graph_text">PLACEHOLDER</span>
+				<div id="graph_bar"></div>
+			</div>
+			<div id="ranking_container">
+
+			</div>
+		</div>
+
+		<div id="copd_container">
+			<div id="copd_map"></div>
+		</div>
 	</div>
+
+
+
 	<script>
 		// Copyright (c) 2013 Ryan Clark, https://gist.github.com/rclark/5779673
 		L.TopoJSON = L.GeoJSON.extend({

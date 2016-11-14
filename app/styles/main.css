@@ -1,10 +1,34 @@
 
 #copd_container{
-
-  margin: 70px; /*Nur für Entwicklung*/  
+	display: inline-block;
 }
-
 #copd_map{
 	width:500px;
 	height:700px;
+}
+
+#stats_container{
+	display: inline-block;
+	width: 500px;
+	height: 700px;
+	float: left;
+	/*border: solid 2px black;*/
+}
+
+#graph_container{
+	height: 50%;
+	width: 100%;
+	/*border: solid 2px blue;*/
+}
+#ranking_container{
+	height: 50%;
+	width: 100%;
+	/*border: solid 2px red;*/
+}
+
+#graph_bar{
+	margin-top: 10px;
+	height:50px;
+	width: 0;
+	background-color: darkred;
 }

@@ -40,6 +40,7 @@
 									fillOpacity: 0.7
 							});
 
+                            // fill popup with data
 							var popupContent = layer.feature.properties.name + "<br>"
 								+ "Anteil Raucher: ".toString() + layer.feature.properties.percentageSmoker + " % <br>"
 								+ "Anteil COPD: ".toString() + layer.feature.properties.percentageCOPD + " %";
@@ -47,7 +48,10 @@
 							popup.setContent(popupContent);
 							popup.setLatLng(e.latlng);
 
-							console.log(e, layer.feature.properties);
+                            // fill graphcontainer with data
+                            document.querySelector("#graph_bar").setAttribute("style","width:" + layer.feature.properties.percentageSmoker + "%");
+                            document.querySelector("#graph_text").innerText = layer.feature.properties.name;
+
 						}
 						function getColor(feature){
 								/*Einfärbung muss dann je nach Wert berechnet werden, Farbe momentan Hardcoded im DatenJSON*/
@@ -83,14 +87,6 @@
 						topoLayer.addData(mapData);
 						topoLayer.eachLayer(handleLayer);
 						topoLayer.addTo(map);
-
-
-
-
-
-
-
-
 
 				}
 				loadMap(mapshape);
