@@ -10,14 +10,15 @@
 		        zoom: 6,
 		        zoomAnimation:true,
 		        fadeAnimation:true,
-		        zoomControl: true
+		        zoomControl: true,
+						maxZoom: 8,
+						minZoom: 5
 		    });
-
 		    var popup = L.popup()
-		        .setLatLng([50.8709, 10.0195])
+		        /*.setLatLng([50.8709, 10.0195])
 		        .setContent('I am a standalone popup.')
 		        .openOn(map);
-
+*/
 						function mergeDataJsonToMapShape(map,data){
 								for(var i in map.objects.mapFreigestellt.geometries){
 										var entryID = map.objects.mapFreigestellt.geometries[i].properties.RS;
