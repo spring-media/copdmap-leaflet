@@ -100,7 +100,7 @@ gulp.task('connect', function(){
 });
 
 // Open
-gulp.task('serve', ['connect'], function() {
+gulp.task('serve', ['connect','watch'], function() {
   open("http://localhost:9000");
 });
 
