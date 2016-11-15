@@ -8,7 +8,7 @@ var $ = require('gulp-load-plugins')();
 var useref = require('gulp-useref');
 var gulpif = require('gulp-if');
 var htmlmin = require('gulp-htmlmin');
-
+var livereload = require('gulp-livereload');
 var jsonminify = require('gulp-jsonminify');
 
 // Styles
@@ -16,6 +16,7 @@ gulp.task('styles', function () {
     return gulp.src(['app/styles/main.css'])
         .pipe($.autoprefixer('last 1 version'))
         .pipe(gulp.dest('app/styles'))
+        .pipe(livereload())
         .pipe($.size());
 });
 
@@ -24,6 +25,7 @@ gulp.task('scripts', function () {
     return gulp.src(['app/scripts/**/*.js'])
         .pipe($.jshint('.jshintrc'))
         .pipe($.jshint.reporter('default'))
+        .pipe(livereload())
         .pipe($.size());
 });
 // Shapefile
@@ -38,6 +40,7 @@ gulp.task('mapdata', function () {
     return gulp.src('app/data/data.json')
         .pipe(jsonminify())
         .pipe(gulp.dest('dist/data'))
+        .pipe(livereload())
         .pipe($.size());
 });
 // HTML
@@ -78,10 +81,21 @@ gulp.task('default', ['clean'], function () {
 
 // Connect
 gulp.task('connect', function(){
-    $.connect.server({
-        root: 'app',
-        port: 9000,
-        livereload: true
+  var serveStatic = require('serve-static');
+  var serveIndex = require('serve-index');
+  var app = require('connect')()
+    .use(require('connect-livereload')({port: 35729}))
+    .use(serveStatic('.tmp'))
+    .use(serveStatic('app'))
+    // paths to bower_components should be relative to the current file
+    // e.g. in app/index.html you should use ../bower_components
+    .use('/bower_components', serveStatic('bower_components'))
+    .use(serveIndex('app'));
+
+  require('http').createServer(app)
+    .listen(9000)
+    .on('listening', function () {
+      console.log('Started connect web server on http://localhost:9000');
     });
 });
 
@@ -108,18 +122,10 @@ gulp.task('wiredep', function () {
 });
 
 // Watch
-gulp.task('watch', ['connect', 'serve'], function () {
-    // Watch for changes in `app` folder
-    gulp.watch([
-        'app/*.html',
-        'app/styles/**/*.css',
-        'app/scripts/**/*.js',
-        'app/images/**/*'
-    ], function (event) {
-        return gulp.src(event.path)
-            .pipe($.connect.reload());
-    });
+gulp.task('watch', ['connect'], function () {
+  livereload.listen();
 
+    // Watch for changes in `app` folder
     // Watch .css files
     gulp.watch('app/styles/**/*.css', ['styles']);
 
