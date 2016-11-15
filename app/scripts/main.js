@@ -43,8 +43,10 @@ var deb;
             option.value = RS[i];
             option.textContent = mapdata[RS[i]].name;
             select.append(option);
-
         }
+
+        sortSelect(select);
+
         updateStats("11");
         select.addEventListener("change", function (e) {
             showSelection(e);
@@ -180,8 +182,25 @@ var deb;
         return (window.matchMedia("screen and (max-width:639px)").matches);
     }
 
+    function sortSelect(selElem) {
+        var tmpAry = [];
+        for (var i=0;i<selElem.options.length;i++) {
+            tmpAry[i] = [];
+            tmpAry[i][0] = selElem.options[i].text;
+            tmpAry[i][1] = selElem.options[i].value;
+        }
+        tmpAry.sort();
+        while (selElem.options.length > 0) {
+            selElem.options[0] = null;
+        }
+        for (var j=0;j<tmpAry.length;j++) {
+            selElem.options[j] = new Option(tmpAry[j][0], tmpAry[j][1]);
+        }
+    }
+
     loadMapdata();
     if (!isMobile()) {
         loadMapShape();
     }
+
 })();
