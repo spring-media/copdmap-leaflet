@@ -46,8 +46,9 @@ var deb;
         }
 
         sortSelect(select);
-
+        select.options[2].selected = true;
         updateStats("11");
+
         select.addEventListener("change", function (e) {
             showSelection(e);
         });
