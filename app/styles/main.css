@@ -2,9 +2,6 @@ body{
 	font-family: "Mark OT";
 }
 
-#copd_container{
-/*	display: inline-block;*/
-}
 #copd_map{
 	width:60%;
 	background: transparent;
@@ -12,11 +9,9 @@ body{
 }
 
 #stats_container{
-	/*display: inline-block;*/
 	width: 40%;
-	height: 70vh;
+	height: auto;
 	float: left;
-	/*border: solid 2px black;*/
 }
 #tooltip {
 	background:#fff;
@@ -32,14 +27,13 @@ body{
 }
 
 #graph_container{
-	height: 50%;
+	height: auto;
 	width: 100%;
-	/*border: solid 2px blue;*/
 }
 #ranking_container{
-	height: 50%;
+	margin-top: 50px;
+	height: auto;
 	width: 100%;
-	/*border: solid 2px red;*/
 }
 
 #graph_text{
@@ -56,14 +50,10 @@ body{
 	font-size: 18px;
 	color: #F18825;
 }
-#graph_bar_wrapper{
-	margin-top: 50px;
-	height: 52px;
-	width: 100%;
-	border-left: solid 1px grey;
-	border-right: solid 1px grey;
-}
 
+#graph_svg{
+	margin-top: 50px;
+}
 #graph_svg > line{
 	stroke: #BDBCBC;
 	stroke-width: 1;
