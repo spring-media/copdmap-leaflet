@@ -27,8 +27,10 @@ var deb;
             fadeAnimation: true,
             zoomControl: true,
             maxZoom: 8,
-            minZoom: 5
+            minZoom: 5,
+            attributionControl:false
         });
+        map.zoomControl.setPosition('bottomright');
         loadMap(mapshape);
     }
 

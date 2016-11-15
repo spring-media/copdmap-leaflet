@@ -6,15 +6,15 @@ body{
 /*	display: inline-block;*/
 }
 #copd_map{
-	width:50%;
+	width:60%;
 	background: transparent;
-	height:80vh;
+	height:70vh;
 }
 
 #stats_container{
 	/*display: inline-block;*/
-	width: 50%;
-	height: 80vh;
+	width: 40%;
+	height: 70vh;
 	float: left;
 	/*border: solid 2px black;*/
 }
@@ -30,14 +30,7 @@ body{
 #copd_app select {
 	/*display:none;*/
 }
-@media screen and (max-width:639px) {
-	#copd_app select {
-		display: block;
-	}
-	#copd_app #copd_map {
-		display:none;
-	}
-}
+
 #graph_container{
 	height: 50%;
 	width: 100%;
@@ -49,16 +42,34 @@ body{
 	/*border: solid 2px red;*/
 }
 
+#graph_text{
+	font-size: 16px;
+	font-weight: 600;
+	color: #00507E;
+	text-transform: uppercase;
+	margin-bottom: 10px;
+}
+#graph_subtext{
+	font-size: 14px;
+}
+#graph_subtext_percentage{
+	font-size: 18px;
+	color: #F18825;
+}
+#graph_bar_wrapper{
+	margin-top: 50px;
+	height: 52px;
+	width: 100%;
+	border-left: solid 1px grey;
+	border-right: solid 1px grey;
+}
 #graph_bar{
-	margin-top: 10px;
-	height:50px;
+	position: relative;
+	top: 10px;
+	height: 30px;
 	width: 0;
 	background-color: #00639E;
-	transition:.5s all;
-}
-
-#graph_subtext_percentage{
-	color: #F18825;
+	transition: .5s all;
 }
 
 #ranking_smoking, #ranking_copd {
@@ -76,4 +87,16 @@ body{
 	border: solid 5px #00639E;
 	-moz-border-radius: 45px;
 	border-radius: 45px;
+}
+
+@media screen and (max-width:639px) {
+	#copd_app select {
+		display: block;
+	}
+	#copd_app #copd_map {
+		display:none;
+	}
+	#stats_container{
+		width: 100%;
+	}
 }
