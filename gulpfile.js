@@ -4,9 +4,12 @@
 var gulp = require('gulp');
 var open = require('open');
 var wiredep = require('wiredep').stream;
-
-// Load plugins
 var $ = require('gulp-load-plugins')();
+var useref = require('gulp-useref');
+var gulpif = require('gulp-if');
+var htmlmin = require('gulp-htmlmin');
+
+var jsonminify = require('gulp-jsonminify');
 
 // Styles
 gulp.task('styles', function () {
@@ -26,32 +29,29 @@ gulp.task('scripts', function () {
 // Shapefile
 gulp.task('shapefile', function () {
     return gulp.src('app/shapes/map.json')
+        .pipe(jsonminify())
         .pipe(gulp.dest('dist/shapes'))
         .pipe($.size());
 });
 // Mapdata
 gulp.task('mapdata', function () {
     return gulp.src('app/data/data.json')
+        .pipe(jsonminify())
         .pipe(gulp.dest('dist/data'))
         .pipe($.size());
 });
 // HTML
-gulp.task('html', ['styles', 'scripts', 'shapefile','mapdata'], function () {
-    var jsFilter = $.filter('**/*.js');
-    var cssFilter = $.filter('**/*.css');
+gulp.task('html', ['styles', 'scripts','shapefile','mapdata'], function () {
+  return gulp.src('app/*.html')
 
-    return gulp.src('app/*.html')
-        .pipe($.useref.assets())
-        .pipe(jsFilter)
-        .pipe($.uglify())
-        .pipe(jsFilter.restore())
-        .pipe(cssFilter)
-        .pipe($.csso())
-        .pipe(cssFilter.restore())
-        .pipe($.useref.restore())
-        .pipe($.useref())
-        .pipe(gulp.dest('dist'))
-        .pipe($.size());
+        .pipe(useref())
+
+        .pipe(gulpif('*.js', $.uglify()))
+        .pipe(gulpif('*.css', $.csso()))
+
+        .pipe(gulpif('*.html',htmlmin({collapseWhitespace: true})))
+        .pipe(gulp.dest('dist'));
+        //.pipe($.size());
 });
 
 // Images
@@ -65,11 +65,11 @@ gulp.task('images', function () {
 
 // Clean
 gulp.task('clean', function () {
-    return gulp.src(['dist/styles', 'dist/scripts', 'dist/images'], { read: false }).pipe($.clean());
+    return gulp.src(['dist/'], { read: false }).pipe($.clean());
 });
 
 // Build
-gulp.task('build', ['html', 'images']);
+gulp.task('build', ['html']);
 
 // Default task
 gulp.task('default', ['clean'], function () {
