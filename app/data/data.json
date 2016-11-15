@@ -2,82 +2,114 @@
   "01": {
     "name": "Schleswig-Holstein",
     "percentageSmoker":"22.8",
-    "percentageCOPD":"4.7"
+    "percentageCOPD":"4.7",
+    "rankingSmoker":"5",
+    "rankingCOPD":"8"
   },
   "02": {
     "name": "Hamburg",
     "percentageSmoker":"21.8",
-    "percentageCOPD":"4.5"
+    "percentageCOPD":"4.5",
+    "rankingSmoker":"8",
+    "rankingCOPD":"9"
   },
   "03": {
     "name": "Niedersachsen",
     "percentageSmoker":"21.4",
-    "percentageCOPD":"5"
+    "percentageCOPD":"5",
+    "rankingSmoker":"10",
+    "rankingCOPD":"6"
   },
   "04": {
     "name": "Bremen",
     "percentageSmoker":"22.9",
-    "percentageCOPD":"4.4"
+    "percentageCOPD":"4.4",
+    "rankingSmoker":"4",
+    "rankingCOPD":"11"
   },
   "05": {
     "name": "Nordrhein-Westfalen",
     "percentageSmoker":"22.8",
-    "percentageCOPD":"5.4"
+    "percentageCOPD":"5.4",
+    "rankingSmoker":"6",
+    "rankingCOPD":"3"
   },
   "06": {
     "name": "Hessen",
     "percentageSmoker":"19.3",
-    "percentageCOPD":"5"
+    "percentageCOPD":"5",
+    "rankingSmoker":"13",
+    "rankingCOPD":"7"
   },
   "07": {
     "name": "Rheinland-Pfalz",
     "color": "#ff6666",
     "percentageSmoker":"20.0",
-    "percentageCOPD":"5.3"
+    "percentageCOPD":"5.3",
+    "rankingSmoker":"12",
+    "rankingCOPD":"4"
   },
   "08": {
     "name": "Baden-Württemberg",
     "percentageSmoker":"18.6",
-    "percentageCOPD":"4.2"
+    "percentageCOPD":"4.2",
+    "rankingSmoker":"16",
+    "rankingCOPD":"13"
   },
   "09": {
     "name": "Bayern",
     "percentageSmoker":"18.8",
-    "percentageCOPD":"4.1"
+    "percentageCOPD":"4.1",
+    "rankingSmoker":"15",
+    "rankingCOPD":"14"
   },
   "10": {
     "name": "Saarland",
     "percentageSmoker":"20.1",
-    "percentageCOPD":"5.9"
+    "percentageCOPD":"5.9",
+    "rankingSmoker":"11",
+    "rankingCOPD":"2"
   },
   "11": {
     "name": "Berlin",
     "percentageSmoker":"24.9",
-    "percentageCOPD":"5.9"
+    "percentageCOPD":"5.9",
+    "rankingSmoker":"1",
+    "rankingCOPD":"1"
   },
   "12": {
     "name": "Brandenburg",
     "percentageSmoker":"22.0",
-    "percentageCOPD":"4.4"
+    "percentageCOPD":"4.4",
+    "rankingSmoker":"7",
+    "rankingCOPD":"12"
   },
   "13": {
     "name": "Mecklenburg-Vorpommern",
     "percentageSmoker":"24.1",
-    "percentageCOPD":"3.8"
+    "percentageCOPD":"3.8",
+    "rankingSmoker":"2",
+    "rankingCOPD":"15"
   },
   "14": {
     "name": "Sachsen",
     "percentageSmoker":"18.9",
-    "percentageCOPD":"3.7"
+    "percentageCOPD":"3.7",
+    "rankingSmoker":"14",
+    "rankingCOPD":"16"
   },
   "15": {
     "name": "Sachsen-Anhalt",
     "percentageSmoker":"23.8",
-    "percentageCOPD":"4.4"
+    "percentageCOPD":"4.4",
+    "rankingSmoker":"3",
+    "rankingCOPD":"10"
   },
   "16": {
     "name": "Thüringen",
     "percentageSmoker":"21.5",
-    "percentageCOPD":"5"
+    "percentageCOPD":"5",
+    "rankingSmoker":"9",
+    "rankingCOPD":"5"
   }
 }

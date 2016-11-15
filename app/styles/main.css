@@ -1,3 +1,6 @@
+body{
+	font-family: "Mark OT";
+}
 
 #copd_container{
 /*	display: inline-block;*/
@@ -52,4 +55,25 @@
 	width: 0;
 	background-color: #00639E;
 	transition:.5s all;
+}
+
+#graph_subtext_percentage{
+	color: #F18825;
+}
+
+#ranking_smoking, #ranking_copd {
+	display: inline-block;
+	height: 80px;
+	width: 80px;
+	line-height: 80px;
+	margin: 10px;
+
+	color: #F18825;
+	text-align: center;
+	font-weight: 600;
+	font-size: 20px;
+
+	border: solid 5px #00639E;
+	-moz-border-radius: 45px;
+	border-radius: 45px;
 }

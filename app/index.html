@@ -16,24 +16,32 @@
   <!-- endbuild -->
 
 	<div id="copd_app">
+
 		<div id="stats_container">
+
 			<div id="graph_container">
-				<span id="graph_text">PLACEHOLDER</span>
+				<div id="graph_text"></div>
+				<span id="graph_subtext">Percentage of people who smoke =</span>
+				<span id="graph_subtext_percentage"></span>
 				<div id="graph_bar"></div>
 			</div>
+
 			<div id="ranking_container">
-
+				<div id="ranking_smoking"></div>
+				<span id="ranking_smoking_label"> Smoking state ranking</span>
+				<br>
+				<div id="ranking_copd"></div>
+				<span id="ranking_copd_label">Smoking COPD ranking</span>
 			</div>
+
 		</div>
 
-		<div id="copd_container">
-			<div id="copd_map"></div>
-      <div id="tooltip" style="display:none"><span></span></div>
-      <select></select>
-		</div>
+		<div id="copd_map"></div>
+      	<div id="tooltip" style="display:none"><span></span></div>
+
+		<select></select>
+
 	</div>
-
-
 
 	<script>
 		// Copyright (c) 2013 Ryan Clark, https://gist.github.com/rclark/5779673
