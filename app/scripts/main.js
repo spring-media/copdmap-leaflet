@@ -1,11 +1,26 @@
 /*jslint browser: true*/
 /*global L */
-
+var deb;
 (function(){
-	var mapdata, mapshape;
-    //console.log(window);
+	var mapdata, mapshape,map;
+		var tooltip = {
+        tt: document.querySelector('#tooltip'), //prefix?id?
+        show: function(x, y) {
+            this.tt.style.top = y != 0 ? ((y + 20) + 'px'): "inherit";
+            this.tt.style.left = x != 0 ? ((x - 100) + 'px'): "inherit";
+            this.tt.style.display='';
+        },
+        update: function(label) {
+            this.tt.children[0].textContent = mapdata[label].name;
+        },
+        hide: function() {
+            this.tt.style.display = 'none';
+        }
+    }
+
 		function loadCOPDMap (){
-		    var map = L.map('copd_map', {
+
+		    map = L.map('copd_map', {
 		        center: [50.8709, 10.0195],
 		        zoom: 6,
 		        zoomAnimation:true,
@@ -14,95 +29,90 @@
 						maxZoom: 8,
 						minZoom: 5
 		    });
-		    var popup = L.popup()
-		        /*.setLatLng([50.8709, 10.0195])
-		        .setContent('I am a standalone popup.')
-		        .openOn(map);
-*/
-						function mergeDataJsonToMapShape(map,data){
-								for(var i in map.objects.mapFreigestellt.geometries){
-										var entryID = map.objects.mapFreigestellt.geometries[i].properties.RS;
-										for (var attrname in mapdata[entryID]) {
-												map.objects.mapFreigestellt.geometries[i].properties[attrname]= data[entryID][attrname];
-										}
-								}
-						}
-		    mergeDataJsonToMapShape(mapshape,mapdata);
-				function loadMap(mapData){
+				loadMap(mapshape);
+			}
+			function populateSelect(options) {
+				var select = document.querySelector("#copd_app select");
+				var RS = Object.keys(options);
+				for(var i=0;i<RS.length;i++) {
 
-						var topoLayer = new L.TopoJSON();
-						function highlight(e){
-							var layer = e.target;
-
-							layer.setStyle({
-									weight: 5,
-									color: '#666',
-									dashArray: '',
-									fillOpacity: 0.7
-							});
-
-                            // fill popup with data
-							var popupContent = layer.feature.properties.name + "<br>"
-								+ "Anteil Raucher: ".toString() + layer.feature.properties.percentageSmoker + " % <br>"
-								+ "Anteil COPD: ".toString() + layer.feature.properties.percentageCOPD + " %";
-
-							popup.setContent(popupContent);
-							popup.setLatLng(e.latlng);
-
-                            // fill graphcontainer with data
-                            document.querySelector("#graph_bar").setAttribute("style","width:" + layer.feature.properties.percentageSmoker + "%");
-                            document.querySelector("#graph_text").innerText = layer.feature.properties.name;
-
-						}
-						function getColor(feature){
-								/*Einfärbung muss dann je nach Wert berechnet werden, Farbe momentan Hardcoded im DatenJSON*/
-								return feature.properties.color;
-						}
-						function resetHighlight(e){
-								var layer = e.target;
-								layer.setStyle({
-										fillColor : getColor(layer.feature),
-										fillOpacity: 1,
-										color:'#555',
-										weight:1,
-										opacity:0.5
-								});
-						}
-						function handleLayer(layer){
-
-								console.log(layer.feature.properties.color);
-
-								layer.setStyle({
-										fillColor : layer.feature.properties.color,
-										fillOpacity: 1,
-										color:'#555',
-										weight:1,
-										opacity:0.5
-								});
-
-								layer.on({
-										mouseover:highlight,
-										mouseout:resetHighlight
-								});
-						}
-						topoLayer.addData(mapData);
-						topoLayer.eachLayer(handleLayer);
-						topoLayer.addTo(map);
+					var option = document.createElement('option');
+					option.value = RS[i];
+					option.textContent = mapdata[RS[i]].name;
+					select.append(option);
 
 				}
-				loadMap(mapshape);
+				select.addEventListener("change",function(e) {
+					showSelection(e);
+				});
+			}
+			function updateStats(RS) {
+				document.querySelector("#graph_bar").setAttribute("style","width:" + mapdata[RS].percentageSmoker + "%");
+				document.querySelector("#graph_text").innerText = mapdata[RS].name;
+			}
+			function showSelection(e) {
 
 
+				var layer;
+				if(e.type === 'change') {
+					layer = "";
 
+					updateStats(e.target.value);
+				} else {
+					layer = e.target;
+					layer.setStyle({
+							fillOpacity:0.7
+					});
+					updateStats(layer.feature.properties.RS);
+				}
+			}
+			function loadMap(mapData){
+					var topoLayer = new L.TopoJSON();
+					function highlight(e){
+						var x = e.originalEvent.clientX,
+            y = e.originalEvent.clientY;
+						var layer = e.target;
+						tooltip.update(layer.feature.properties.RS);
+						tooltip.show(x,y);
 
-		}
+						layer.setStyle({
+								fillOpacity:0.7
+						});
+					}
+
+					function resetHighlight(e){
+							tooltip.hide();
+							var layer = e.target;
+							layer.setStyle({
+									fillOpacity: 1
+							});
+					}
+					function handleLayer(layer){
+							layer.setStyle({
+								weight: 1,
+								color: '#fff',
+								fillColor:'#00639E',
+								dashArray: '',
+								fillOpacity: 1
+							});
+
+							layer.on({
+									mouseover:highlight,
+									mouseout:resetHighlight,
+									click:showSelection
+							});
+					}
+					topoLayer.addData(mapData);
+					topoLayer.eachLayer(handleLayer);
+					topoLayer.addTo(map);
+				}
 	function paintMapIfReady() {
 			if (typeof mapshape !== 'undefined' && typeof mapdata !== 'undefined') {
-				console.log('paint');
+
 				loadCOPDMap();
-				//LoadCOPDMap();
+				deb = mapdata;
 			} else {
-				console.log('map not ready');
+				
 			}
 		}
 	function loadMapdata() {
@@ -114,6 +124,8 @@
 		    // Success!
 		    var data = JSON.parse(request.responseText);
 				mapdata = data;
+
+				populateSelect(mapdata);
 				paintMapIfReady();
 		  } else {
 		    // We reached our target server, but it returned an error
@@ -127,7 +139,7 @@
 
 		request.send();
 	}
-	function loadMapShape() {
+	function loadMapShape() { // only on large screens
 		var request = new XMLHttpRequest();
 		request.open('GET', '/shapes/map.json', true);
 
@@ -150,9 +162,17 @@
 		request.send();
 	}
 
+	function isMobile() {
+		if(window.matchMedia("screen and (max-width:639px)").matches) {
+			return true
+		} else {
+			return false
+		}
+	}
 
 
-
-loadMapdata();
-loadMapShape();
+	loadMapdata();
+	if(!isMobile()) {
+		loadMapShape();
+	}
 })();

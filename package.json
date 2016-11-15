@@ -19,6 +19,6 @@
     "wiredep": "^1.4.4"
   },
   "dependencies": {
-    "leaflet": "~0.7.2"
+    "leaflet": "^1.0.1"
   }
 }

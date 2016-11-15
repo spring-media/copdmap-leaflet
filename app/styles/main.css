@@ -1,20 +1,40 @@
 
 #copd_container{
-	display: inline-block;
+/*	display: inline-block;*/
 }
 #copd_map{
-	width:500px;
-	height:700px;
+	width:50%;
+	background: transparent;
+	height:80vh;
 }
 
 #stats_container{
-	display: inline-block;
-	width: 500px;
-	height: 700px;
+	/*display: inline-block;*/
+	width: 50%;
+	height: 80vh;
 	float: left;
 	/*border: solid 2px black;*/
 }
-
+#tooltip {
+	background:#fff;
+	padding:10px;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: bold;
+	position:absolute;
+	border:1px solid #ececec;
+}
+#copd_app select {
+	/*display:none;*/
+}
+@media screen and (max-width:639px) {
+	#copd_app select {
+		display: block;
+	}
+	#copd_app #copd_map {
+		display:none;
+	}
+}
 #graph_container{
 	height: 50%;
 	width: 100%;
@@ -30,5 +50,6 @@
 	margin-top: 10px;
 	height:50px;
 	width: 0;
-	background-color: darkred;
+	background-color: #00639E;
+	transition:.5s all;
 }
