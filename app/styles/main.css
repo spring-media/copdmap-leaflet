@@ -63,13 +63,26 @@ body{
 	border-left: solid 1px grey;
 	border-right: solid 1px grey;
 }
-#graph_bar{
-	position: relative;
-	top: 10px;
+
+#graph_svg > line{
+	stroke: #BDBCBC;
+	stroke-width: 1;
+}
+#graph_svg > line:first-of-type,
+#graph_svg > line:last-of-type{
+	stroke-width: 2;
+}
+
+#graph_svg > text{
+	color: #1D1D1B;
+	font-size: 10px;
+}
+#graph_svg_bar{
 	height: 30px;
 	width: 0;
-	background-color: #00639E;
+	fill: #00639E;
 	transition: .5s all;
+	transform: translate(0px, 11px);
 }
 
 #ranking_smoking, #ranking_copd {

@@ -54,7 +54,7 @@ var deb;
     function updateStats(RS) {
         document.querySelector("#graph_text").innerText = mapdata[RS].name;
         document.querySelector("#graph_subtext_percentage").innerText = mapdata[RS].percentageSmoker + "%" ;
-        document.querySelector("#graph_bar").setAttribute("style", "width:" + mapdata[RS].percentageSmoker + "%");
+        document.querySelector("#graph_svg_bar").setAttribute("style", "width:" + parseFloat(mapdata[RS].percentageSmoker)*3.333333333333 + "%");
 
         document.querySelector("#ranking_smoking").innerText = mapdata[RS].rankingSmoker + ".";
         document.querySelector("#ranking_copd").innerText = mapdata[RS].rankingCOPD + ".";
