@@ -14,6 +14,7 @@
     "gulp-jsonminify": "^1.0.0",
     "gulp-livereload": "^3.8.1",
     "gulp-load-plugins": "^1.4.0",
+    "gulp-replace": "^0.5.4",
     "gulp-size": "^2.1.0",
     "gulp-uglify": "^2.0.0",
     "gulp-useref": "^3.1.2",

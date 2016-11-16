@@ -10,11 +10,13 @@ var gulpif = require('gulp-if');
 var htmlmin = require('gulp-htmlmin');
 var livereload = require('gulp-livereload');
 var jsonminify = require('gulp-jsonminify');
-
+var replace = require('gulp-replace');
+var deployURL = 'http://static.apps.welt.de.s3.amazonaws.com/2016/copd/';
 // Styles
 gulp.task('styles', function () {
     return gulp.src(['app/styles/main.css'])
         .pipe($.autoprefixer('last 1 version'))
+        //.pipe(rename('.tmp.main.css'))
         .pipe(gulp.dest('app/styles'))
         .pipe(livereload())
         .pipe($.size());
@@ -46,17 +48,20 @@ gulp.task('mapdata', function () {
 // HTML
 gulp.task('html', ['styles', 'scripts','shapefile','mapdata'], function () {
   return gulp.src('app/*.html')
-
         .pipe(useref())
-
         .pipe(gulpif('*.js', $.uglify()))
         .pipe(gulpif('*.css', $.csso()))
-
         .pipe(gulpif('*.html',htmlmin({collapseWhitespace: true})))
         .pipe(gulp.dest('dist'));
         //.pipe($.size());
 });
+gulp.task('makeRefsAbsolute',function() {
+  return gulp.src('dist/*.html')
+    .pipe(gulpif('*.html',replace(/"styles\//g,'"'+deployURL+'styles/')))
+    .pipe(gulpif('*.html',replace(/"scripts\//g,'"'+deployURL+'scripts/')))
+    .pipe(gulp.dest('dist'));
 
+});
 // Images
 gulp.task('images', function () {
     return gulp.src([
@@ -72,7 +77,11 @@ gulp.task('clean', function () {
 });
 
 // Build
-gulp.task('build', ['html']);
+gulp.task('builddev', ['html']);
+
+gulp.task('build',['html'],function() {
+  gulp.start('makeRefsAbsolute');
+});
 
 // Default task
 gulp.task('default', ['clean'], function () {
