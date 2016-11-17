@@ -4,14 +4,14 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-   	<!-- build:css styles/main.css -->
+   	<!-- build:css styles/main_v0.4.4.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
 
 	<!-- build:js scripts/vendor.js -->
-	<script src="lib/scripts/leaflet.js"></script>
+
   <!-- bower:js -->
-  <script src="bower_components/topojson/topojson.js"></script>
+
   <!-- endbower -->
   <!-- endbuild -->
 
@@ -23,9 +23,10 @@
 
 			<div id="graph_container">
 				<div id="graph_text"></div>
-				<span id="graph_subtext">Percentage of people who smoke =</span>
-				<span id="graph_subtext_percentage"></span>
-
+					<div id="graph_subtext_container" >
+						<span id="graph_subtext">Anteil Raucher an Bevölkerung in Prozent =</span>
+						<span id="graph_subtext_percentage"></span>
+					</div>
 				<br>
 				<br>
 
@@ -42,6 +43,7 @@
 					<line id="graph_svg_divide" x1="0%" y1="26" x2="100%" y2="26" stroke-dasharray="1, 3"></line>
 					<rect id="graph_svg_bar" width="0%" height="0%"></rect>
 
+
 					<text x="0%" 			 y="70">0%</text>
 					<text x="16.6666666666%" y="70" text-anchor="middle">5%</text>
 					<text x="33.3333333333%" y="70" text-anchor="middle">10%</text>
@@ -54,11 +56,21 @@
 			</div>
 
 			<div id="ranking_container">
-				<div id="ranking_smoking"></div>
-				<span id="ranking_smoking_label"> Smoking state ranking</span>
-				<br>
-				<div id="ranking_copd"></div>
-				<span id="ranking_copd_label">Smoking COPD ranking</span>
+				<div id="ranking_copd">
+					<span class="icon">
+					</span>
+					<span class="label">
+						Rang Bundesland bei COPD-Fällen
+					</span>
+				</div>
+
+				<div id="ranking_smoking">
+					<span class="icon">
+					</span>
+					<span class="label">
+						Rang Bundesland bei Raucher-Anteil
+					</span>
+				</div>
 			</div>
 
 		</div>
@@ -68,23 +80,9 @@
 
 	</div>
 
-	<script>
-		// Copyright (c) 2013 Ryan Clark, https://gist.github.com/rclark/5779673
-		L.TopoJSON = L.GeoJSON.extend({
-			addData: function(jsonData){
-				if(jsonData.type === "Topology") {
-					for (key in jsonData.objects){
-						geojson=topojson.feature(jsonData,jsonData.objects[key]);
-						L.GeoJSON.prototype.addData.call(this, geojson);
-					}
-				}else{
-					L.GeoJSON.prototype.addData.call(this, jsonData);
-				}
-			}
-		});
-	</script>
-
-	<!-- build:js scripts/main.js -->
+	<!-- build:js scripts/main_v0.4.2.js  -->
+	<script src="lib/scripts/leaflet.js"></script>
+	<script src="bower_components/topojson/topojson.js"></script>
 	<script src="scripts/main.js"></script>
 	<!-- endbuild -->
   <!-- build:remove -->
