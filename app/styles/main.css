@@ -51,6 +51,9 @@
 	font-weight: bold;
 	position:absolute;
 	border:1px solid #ececec;
+	font-size: 14px;
+	border-radius: 4px;
+	box-shadow: 3px 5px 5px 0px rgba(0,0,0,0.3);
 }
 #copd_app select {
 	font-size: 13px;
@@ -61,7 +64,7 @@
 	width: 100%;
 	height: 50px;
 	margin-bottom: 30px;
-
+	border-color: #EDE9E1;
 	appearance: none;
 	-webkit-appearance: none;
 	-moz-appearance: none;
@@ -89,12 +92,13 @@
 
 #copd_app #graph_subtext_container{
 	width: 120%;
+	margin-bottom: 25px;
 }
 
 #copd_app #graph_text{
 	font-size: 16px;
 	font-weight: 600;
-	color: #00507E;
+	color: #003A5A;
 	text-transform: uppercase;
 	margin-bottom: 10px;
 }
@@ -128,7 +132,7 @@
 #copd_app #graph_svg_bar{
 	/*height: 30px;*/
 	/*width: 0;*/
-	fill: #00639E;
+	fill: #0B5ED7;
 	transition: .5s all;
 	transform: translate(0px, 11px);
 }
@@ -137,8 +141,7 @@
 	display: inline-block;
 	height: 80px;
 	width: 80px;
-	line-height: 70px;
-	margin-right: 20px;
+	line-height: 72px;
 	margin-bottom: 30px;
 
 	color: #F18825;
@@ -146,7 +149,7 @@
 	font-weight: 600;
 	font-size: 20px;
 
-	border: solid 5px #00507E;
+	border: solid 3px #0B5ED7;
 	border-radius: 45px;
 }
 
@@ -186,6 +189,10 @@
 
 	#copd_app #ranking_container > div{
 		width: 50%;
+	}
+
+	#copd_app #ranking_container .icon {
+		mso-row-margin-right: 20px;
 	}
 
 	#copd_app #ranking_container .label{

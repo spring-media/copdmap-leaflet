@@ -189,7 +189,7 @@ var deb;
             layer.setStyle({
                 weight: 1,
                 color: '#fff',
-                fillColor: '#00639E',
+                fillColor: '#003A5A',
                 dashArray: '',
                 fillOpacity: 1
             });
@@ -222,7 +222,7 @@ var deb;
         tooltip.show(x, y);
 
         layer.setStyle({
-            fillOpacity: 0.7
+            fillColor: '#0B5ED7'
         });
     }
 
@@ -232,7 +232,7 @@ var deb;
 
         if(!layer.feature.properties.selected) {
             layer.setStyle({
-                fillOpacity: 1
+                fillColor: '#003A5A'
             });
         }
     }
@@ -254,23 +254,23 @@ var deb;
         if(selectedLayer!=='undefined'){
             selectedLayer.feature.properties.selected = false;
             selectedLayer.setStyle({
-                fillOpacity: 1
+                fillColor: '#003A5A'
             });
-        }//
+        }
 
         layer.feature.properties.selected = true;
         layer.setStyle({
-            fillOpacity: 0.7
+            fillColor: '#0B5ED7'
         });
         selectedLayer = layer;
     }
 
     function updateStats(RS) {
-        document.querySelector("#graph_text").innerText = mapdata[RS].name;
-        document.querySelector("#graph_subtext_percentage").innerText = mapdata[RS].percentageSmoker + "%" ;
-        document.querySelector("#graph_svg_bar").setAttribute("width", parseFloat(mapdata[RS].percentageSmoker)*3.333333333333 + "%");
-        document.getElementById("ranking_smoking").getElementsByClassName('icon')[0].innerText = mapdata[RS].rankingSmoker + ".";
-        document.getElementById("ranking_copd").getElementsByClassName('icon')[0].innerText = mapdata[RS].rankingCOPD + ".";
+        document.getElementById("graph_text").innerText = mapdata[RS].name;
+        document.getElementById("graph_subtext_percentage").innerText = mapdata[RS].percentageSmoker + "%" ;
+        document.getElementById("graph_svg_bar").setAttribute("width", parseFloat(mapdata[RS].percentageSmoker)*3.333333333333 + "%");
+        document.getElementById("ranking_smoking").getElementsByClassName('icon')[0].textContent = mapdata[RS].rankingSmoker + ".";
+        document.getElementById("ranking_copd").getElementsByClassName('icon')[0].textContent = mapdata[RS].rankingCOPD + ".";
     }
 
 
