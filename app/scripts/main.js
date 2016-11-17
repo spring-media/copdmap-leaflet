@@ -23,8 +23,8 @@ var deb;
     var tooltip = {
         tt: document.querySelector('#tooltip'), //prefix?id?
         show: function (x, y) {
-            this.tt.style.top = y != 0 ? ((y) + 'px') : "inherit";
-            this.tt.style.left = x != 0 ? ((x) + 'px') : "inherit";
+            this.tt.style.top = y != 0 ? ((y-40) + 'px') : "inherit";
+            this.tt.style.left = x != 0 ? ((x+120) + 'px') : "inherit";
             this.tt.style.display = '';
         },
         update: function (label) {
@@ -125,7 +125,7 @@ var deb;
             var option = document.createElement('option');
             option.value = RS[i];
             option.textContent = mapdata[RS[i]].name;
-            select.append(option);
+            select.appendChild(option);
         }
 
         sortSelect(select);
@@ -136,10 +136,6 @@ var deb;
             showSelection(e);
         });
     }
-
-
-
-
 
     function paintMapIfReady() {
         if (typeof mapshape !== 'undefined' && typeof mapdata !== 'undefined') {
@@ -212,11 +208,12 @@ var deb;
 
 
     function highlight(e) {
-        var x = e.originalEvent.clientX,
-            y = e.originalEvent.clientY;
+        var x = e.layerPoint.x,
+            y = e.layerPoint.y;
         var layer = e.target;
         console.log('Tooltip');
         console.loge
+        console.log(e);
         console.log(layer.feature.properties.RS);
         console.log(x+":"+y);
 
@@ -259,7 +256,7 @@ var deb;
             selectedLayer.setStyle({
                 fillOpacity: 1
             });
-        }
+        }//
 
         layer.feature.properties.selected = true;
         layer.setStyle({
@@ -271,7 +268,7 @@ var deb;
     function updateStats(RS) {
         document.querySelector("#graph_text").innerText = mapdata[RS].name;
         document.querySelector("#graph_subtext_percentage").innerText = mapdata[RS].percentageSmoker + "%" ;
-        document.querySelector("#graph_svg_bar").setAttribute("style", "width:" + parseFloat(mapdata[RS].percentageSmoker)*3.333333333333 + "%");
+        document.querySelector("#graph_svg_bar").setAttribute("width", parseFloat(mapdata[RS].percentageSmoker)*3.333333333333 + "%");
         document.getElementById("ranking_smoking").getElementsByClassName('icon')[0].innerText = mapdata[RS].rankingSmoker + ".";
         document.getElementById("ranking_copd").getElementsByClassName('icon')[0].innerText = mapdata[RS].rankingCOPD + ".";
     }

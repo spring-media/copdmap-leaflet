@@ -1,11 +1,14 @@
 #copd_app{
+	width:620px;
+	margin-left: auto;
+	margin-right: auto;
 	position: relative;
 	font-family: ffmark,"Helvetica Neue",Helvetica,Arial,sans-serif;;
-	height: 470px;
-	padding: 35px 20px;
-	background: #ffffff; /* Old browsers */ /* FF3.6-15 */ /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(to right,  #ffffff 0%,#eeeeee 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eeeeee',GradientType=1 ); /* IE6-9 */
+	height: 500px;
+	padding: 35px 0px;
+	/*background: #ffffff; !* Old browsers *! !* FF3.6-15 *! !* Chrome10-25,Safari5.1-6 *!*/
+	/*background: linear-gradient(to right,  #ffffff 0%,#eeeeee 100%); !* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ *!*/
+	/*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eeeeee',GradientType=1 ); !* IE6-9 *!*/
 
 }
 
@@ -17,6 +20,7 @@
 #copd_app #copd_map svg{
 	width: initial;
 	height: initial;
+	left: 50px;
 }
 
 #copd_app .leaflet-overlay-pane{
@@ -83,7 +87,7 @@
 	width: 100%;
 }
 
-#graph_subtext_container #graph_subtext_container{
+#copd_app #graph_subtext_container{
 	width: 120%;
 }
 
@@ -122,8 +126,8 @@
 	font-size: 10px;
 }
 #copd_app #graph_svg_bar{
-	height: 30px;
-	width: 0;
+	/*height: 30px;*/
+	/*width: 0;*/
 	fill: #00639E;
 	transition: .5s all;
 	transform: translate(0px, 11px);
@@ -152,11 +156,15 @@
 	display:inline-block;
 	vertical-align: middle;
 	width: 50%;
+	line-height: 18px;
+	top: -2px;
+	position: relative;
 }
 
 
 @media screen and (max-width:639px) {
 	#copd_app{
+		width:100%;
 		padding: 35px 25px 35px 15px;
 		background-color: initial;
 	}
